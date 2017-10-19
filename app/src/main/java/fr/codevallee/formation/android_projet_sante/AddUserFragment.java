@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 /**
@@ -114,36 +115,42 @@ public class AddUserFragment extends Fragment {
                 String telephone = telephoneField.getText().toString();
                 String cv = cvField.getText().toString();
 
-                User user = new User(
-                        null,
-                        firstname,
-                        lastname,
-                        gender,
-                        job,
-                        service,
-                        mail,
-                        telephone,
-                        cv
-                );
+                User user = null;
+                try {
+                    user = new User(
+                            null,
+                            firstname,
+                            lastname,
+                            gender,
+                            job,
+                            service,
+                            mail,
+                            telephone,
+                            cv
+                    );
 
-                UserDataSource dataSource = new UserDataSource(getContext());
-                UserDAO userDAO = dataSource.newUserDAO();
-                user = userDAO.createUser(user);
+                    UserDataSource dataSource = new UserDataSource(getContext());
+                    UserDAO userDAO = dataSource.newUserDAO();
+                    user = userDAO.createUser(user);
 
-                Log.d("[INFO]", "Add user : " + user.toString());
+                    Log.d("[INFO]", "Add user : " + user.toString());
 
-                // Intent toListIntent = new Intent(getContext(), MainActivity.class);
-                FragmentManager manager = getFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
+                    // Intent toListIntent = new Intent(getContext(), MainActivity.class);
+                    FragmentManager manager = getFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
 
-                // if (manager.findFragmentById(R.id.secondary_fragment) != null) {
-                //     transaction.detach(R.id.secondary_fragment);
-                //     transaction.commit();
-                // } else {
-                    UserListFragment listFragment = new UserListFragment();
-                    transaction.replace(R.id.main_fragment_container, listFragment);
-                    transaction.commit();
-                // }
+                    // if (manager.findFragmentById(R.id.secondary_fragment) != null) {
+                    //     transaction.detach(R.id.secondary_fragment);
+                    //     transaction.commit();
+                    // } else {
+                        UserListFragment listFragment = new UserListFragment();
+                        transaction.replace(R.id.main_fragment_container, listFragment);
+                        transaction.commit();
+                    // }
+                } catch (User.UserException e) {
+                    Toast.makeText(getContext(), (CharSequence) e.getMessage(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
             }
         });
 

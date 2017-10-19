@@ -1,5 +1,10 @@
 package fr.codevallee.formation.android_projet_sante;
 
+import android.telephony.PhoneNumberUtils;
+import android.util.Patterns;
+
+import java.util.regex.*;
+
 /**
  * Created by tgoudouneix on 19/10/2017.
  */
@@ -20,15 +25,15 @@ public class User {
     private String telephone;
     private String cv;
 
-    public User(Integer id, String firstname, String lastname, String gender, String job, String service, String mail, String telephone, String cv) {
+    public User(Integer id, String firstname, String lastname, String gender, String job, String service, String mail, String telephone, String cv) throws RequiredFieldException, BadFormattedFieldException{
         this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.setFirstname(firstname);
+        this.setLastname(lastname);
         this.setGender(gender);
         this.job = job;
         this.service = service;
-        this.mail = mail;
-        this.telephone = telephone;
+        this.setMail(mail);
+        this.setTelephone(telephone);
         this.cv = cv;
     }
 
@@ -48,7 +53,9 @@ public class User {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
+    public void setFirstname(String firstname) throws RequiredFieldException {
+        if (firstname.isEmpty())
+            throw new RequiredFieldException("Require firstname");
         this.firstname = firstname;
     }
 
@@ -56,7 +63,9 @@ public class User {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
+    public void setLastname(String lastname) throws RequiredFieldException {
+        if (lastname.isEmpty())
+            throw new RequiredFieldException("Require lastname");
         this.lastname = lastname;
     }
 
@@ -91,16 +100,22 @@ public class User {
         return mail;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setMail(String mail) throws BadFormattedFieldException {
+        if (Patterns.EMAIL_ADDRESS.matcher(mail).matches() || mail.isEmpty())
+            this.mail = mail;
+        else
+            throw new BadFormattedFieldException("Mail bad formatted");
     }
 
     public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setTelephone(String telephone) throws BadFormattedFieldException  {
+        if (Patterns.PHONE.matcher(telephone).matches() || telephone.isEmpty())
+            this.telephone = telephone;
+        else
+            throw new BadFormattedFieldException("Telephone bad formatted");
     }
 
     public String getCv() {
@@ -124,5 +139,21 @@ public class User {
                 ", telephone='" + telephone + '\'' +
                 ", cv='" + cv + '\'' +
                 '}';
+    }
+
+    public class UserException extends Exception {
+        public UserException(String message) {
+            super(message);
+        }
+    }
+    public class RequiredFieldException extends UserException {
+        public RequiredFieldException(String message) {
+            super(message);
+        }
+    }
+    public class BadFormattedFieldException extends UserException {
+        public BadFormattedFieldException(String message) {
+            super(message);
+        }
     }
 }

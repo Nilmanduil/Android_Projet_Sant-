@@ -55,14 +55,18 @@ public class UserDAO {
 
         cursor.moveToFirst();
 
-        user.setFirstname(cursor.getString(1));
-        user.setLastname(cursor.getString(2));
-        user.setGender(cursor.getString(3));
-        user.setJob(cursor.getString(4));
-        user.setService(cursor.getString(5));
-        user.setMail(cursor.getString(6));
-        user.setTelephone(cursor.getString(7));
-        user.setCv(cursor.getString(8));
+        try {
+            user.setFirstname(cursor.getString(1));
+            user.setLastname(cursor.getString(2));
+            user.setGender(cursor.getString(3));
+            user.setJob(cursor.getString(4));
+            user.setService(cursor.getString(5));
+            user.setMail(cursor.getString(6));
+            user.setTelephone(cursor.getString(7));
+            user.setCv(cursor.getString(8));
+        } catch (User.UserException e) {
+            e.printStackTrace();
+        }
 
         cursor.close();
         return user;
@@ -113,17 +117,21 @@ public class UserDAO {
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            users.add(new User(
-                    cursor.getInt(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getString(4),
-                    cursor.getString(5),
-                    cursor.getString(6),
-                    cursor.getString(7),
-                    cursor.getString(8)
-            ));
+            try {
+                users.add(new User(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8)
+                ));
+            } catch (User.UserException e) {
+                e.printStackTrace();
+            }
             cursor.moveToNext();
         }
 

@@ -1,8 +1,49 @@
 <resources>
-    <string name="app_name">Android_Projet_Sante</string>
+    <string name="app_name">Hospital workers</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="help">Help</string>
+
+    <string name="add_user">Add user</string>
+    <string name="edit_user">Edit user</string>
+    <string name="delete_user">Delete user</string>
+
+    <string name="call">Call</string>
+    <string name="send_mail">Send mail</string>
+
+    <string name="users">Users</string>
+    <!-- User fields -->
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="gender">Gender</string>
+    <string name="job">Job</string>
+    <string name="service">Service</string>
+    <string name="mail">Mail</string>
+    <string name="telephone">Telephone</string>
+    <string name="cv">Resume</string>
+
+    <!-- Genders -->
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_none">Agender</string>
+    <string name="gender_other">Other</string>
+
+    <!-- Services -->
+    <string name="services">Services</string>
+    <string-array name="services_list">
+        <item>Administration</item>
+        <item>General surgery</item>
+        <item>Anesthesy</item>
+        <item>Diagnostics</item>
+        <item>Cardiology</item>
+        <item>Cancerology</item>
+        <item>Neurology</item>
+        <item>Gerontology</item>
+        <item>Pediatry</item>
+        <item>Psychiatry</item>
+        <item>Legal medecine</item>
+    </string-array>
 </resources>

@@ -2,7 +2,6 @@ package fr.codevallee.formation.android_projet_sante;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -40,11 +39,9 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show(); */
                 if (findViewById(R.id.main_fragment_container) != null) { // Si layout pour écran non large alors :
                     AddUserFragment addFormFragment = new AddUserFragment();
-                    getFragmentManager().beginTransaction().add(R.id.main_fragment_container, addFormFragment).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.main_fragment_container, addFormFragment).addToBackStack(null).commit();
                 }
             }
         });

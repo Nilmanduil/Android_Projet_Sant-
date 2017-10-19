@@ -5,6 +5,11 @@ package fr.codevallee.formation.android_projet_sante;
  */
 
 public class User {
+    public final static String GENDER_MALE = "male";
+    public final static String GENDER_FEMALE = "female";
+    public final static String GENDER_AGENDER = "agender";
+    public final static String GENDER_OTHER = "other";
+
     private Integer id;
     private String firstname;
     private String lastname;
@@ -19,7 +24,7 @@ public class User {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.gender = gender;
+        this.setGender(gender);
         this.job = job;
         this.service = service;
         this.mail = mail;
@@ -60,7 +65,10 @@ public class User {
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        if (gender != User.GENDER_MALE && gender != User.GENDER_FEMALE && gender != User.GENDER_AGENDER && gender != User.GENDER_OTHER)
+            this.gender = null;
+        else
+            this.gender = gender;
     }
 
     public String getJob() {

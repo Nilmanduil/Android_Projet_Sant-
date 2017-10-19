@@ -1,12 +1,22 @@
 package fr.codevallee.formation.android_projet_sante;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 
 
 /**
@@ -63,8 +73,81 @@ public class AddUserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_user, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_user, container, false);
+
+        final EditText firstnameField = (EditText) view.findViewById(R.id.add_firstname);
+        final EditText lastnameField = (EditText) view.findViewById(R.id.add_lastname);
+        final RadioButton genderMale = (RadioButton) view.findViewById(R.id.add_gender_male);
+        final RadioButton genderFemale = (RadioButton) view.findViewById(R.id.add_gender_female);
+        final RadioButton genderAgender = (RadioButton) view.findViewById(R.id.add_gender_agender);
+        final RadioButton genderOther = (RadioButton) view.findViewById(R.id.add_gender_other);
+        final AutoCompleteTextView jobField = (AutoCompleteTextView) view.findViewById(R.id.add_job);
+        final Spinner serviceField = (Spinner) view.findViewById(R.id.add_service);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getContext(), R.array.services_list, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        serviceField.setAdapter(spinnerAdapter);
+        final EditText mailField = (EditText) view.findViewById(R.id.add_mail);
+        final EditText telephoneField = (EditText) view.findViewById(R.id.add_telephone);
+        final EditText cvField = (EditText) view.findViewById(R.id.add_cv);
+
+        Button sendButton = (Button) view.findViewById(R.id.add_send);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String firstname = firstnameField.getText().toString();
+                String lastname = lastnameField.getText().toString();
+                String gender;
+                if (genderMale.isChecked()) {
+                    gender = User.GENDER_MALE;
+                } else if (genderFemale.isChecked()) {
+                    gender = User.GENDER_FEMALE;
+                } else if (genderAgender.isChecked()) {
+                    gender = User.GENDER_AGENDER;
+                } else if (genderOther.isChecked()) {
+                    gender = User.GENDER_OTHER;
+                } else {
+                    gender = null;
+                }
+                String job = jobField.getText().toString();
+                String service = serviceField.getSelectedItem().toString();
+                String mail = mailField.getText().toString();
+                String telephone = telephoneField.getText().toString();
+                String cv = cvField.getText().toString();
+
+                User user = new User(
+                        null,
+                        firstname,
+                        lastname,
+                        gender,
+                        job,
+                        service,
+                        mail,
+                        telephone,
+                        cv
+                );
+
+                UserDataSource dataSource = new UserDataSource(getContext());
+                UserDAO userDAO = dataSource.newUserDAO();
+                user = userDAO.createUser(user);
+
+                Log.d("[INFO]", "Add user : " + user.toString());
+
+                // Intent toListIntent = new Intent(getContext(), MainActivity.class);
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+
+                // if (manager.findFragmentById(R.id.secondary_fragment) != null) {
+                //     transaction.detach(R.id.secondary_fragment);
+                //     transaction.commit();
+                // } else {
+                    UserListFragment listFragment = new UserListFragment();
+                    transaction.replace(R.id.main_fragment_container, listFragment);
+                    transaction.commit();
+                // }
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -14,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        UserListFragment.OnListFragmentInteractionListener,
+        AddUserFragment.OnAddUserFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +25,27 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if (findViewById(R.id.main_fragment_container) != null) { // Si layout pour écran non large alors :
+
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            UserListFragment firstFragment = new UserListFragment();
+            firstFragment.setArguments(getIntent().getExtras());
+            getFragmentManager().beginTransaction().add(R.id.main_fragment_container, firstFragment).commit();
+        }
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show(); */
+                if (findViewById(R.id.main_fragment_container) != null) { // Si layout pour écran non large alors :
+                    AddUserFragment addFormFragment = new AddUserFragment();
+                    getFragmentManager().beginTransaction().add(R.id.main_fragment_container, addFormFragment).commit();
+                }
             }
         });
 
@@ -97,5 +114,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onListFragmentInteraction(User item) {
+
+    }
+
+    @Override
+    public void onAddUserFragmentInteraction() {
+
     }
 }

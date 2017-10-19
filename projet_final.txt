@@ -1,0 +1,55 @@
+Application Santé.
+
+Durée 2 jours :
+
+Elle doit être compatible mobile et tablette (affichage adapté à l'écran...). 
+
+L'application doit ressembler à l'image "mock-up.png"
+
+La gestion de la rotation n'est pas obligatoire
+
+Le code doit être publié sur GitHub
+
+Ecran 1 (création): Création d'un utilisateur
+
+	- Les utilisateurs sont stockés dans une base de données SQLite
+
+		champs : 
+			- nom , EditText
+			- prénom , EditText
+			- sexe , RadioButton
+			- métier, AutoCompleteTextView
+			- service de l'hopital, Spinner
+			- mail EditText
+			- telephone EditText avec vérification du format
+			- CV : EditText multiligne
+
+
+Ecran 2 (liste): Liste des utilisateurs avec mécanisme des framents. Utilisation de RecyclerView et Pager si possible (cf TP17)
+			
+			- L'affichage de l'écran s'adapte en fontion de la largeur de l'écran (cf TP16).
+			- Chargement des utilisateurs  depuis la base de données SQLite
+			- Ajouter une bouton FloatingActionButton pour l'ajout d'utilisateur (s'inspirer du projet Android Studio Basic Activity).
+			- Ajouter une Appbarlayout et une NavigationView (s'inspirer du projet Android Studio Navigation Drawer Activity)
+			- Un clic que l'utilisateur affiche une page utilisateur complet (avec CV)(ecran 7)
+
+Ecran 3 (aide): Page aide 
+
+			- Affiche d'un fichier HTML avec une WebView
+
+Ecran 4 (préférence): Préférences (stockées dans les SharePreference, ( pourquoi ne pas utiliser un Parceable ?)
+
+			- permet de modifier la liste des métiers
+
+Ecran 5 (suppression): Affiche la liste des utilisateurs, un clic sur l'utilisateur le supprime avant confirmation 
+
+Ecran 6 (modification): Mise à jour d'un utilisateur
+
+Ecran 7 (affichage d'un utilisateur): Affiche l'utilisateur. 
+			- ajout d'un bouton pour l'appeler
+			- ajout d'un bouton pour lui envoyer un mail
+
+
+Bonus : 
+- un écran SplashScreen au démarrage de l'application ?
+- Prise en compte du mode offline, erreur réseau (http://supertos.free.fr/supertos.php?page=1505)

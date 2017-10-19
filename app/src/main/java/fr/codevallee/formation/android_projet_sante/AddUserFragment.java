@@ -171,7 +171,7 @@ public class AddUserFragment extends Fragment {
             mListener = (OnAddUserFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnUserViewFragmentInteractionListener");
         }
     }
 

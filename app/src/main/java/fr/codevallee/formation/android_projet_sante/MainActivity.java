@@ -15,7 +15,8 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         UserListFragment.OnListFragmentInteractionListener,
-        AddUserFragment.OnAddUserFragmentInteractionListener {
+        AddUserFragment.OnAddUserFragmentInteractionListener,
+        UserViewFragment.OnUserViewFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,11 +116,21 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(User item) {
-
+        if (findViewById(R.id.main_fragment_container) != null) { // Si layout pour écran non large alors :
+            UserViewFragment firstFragment = UserViewFragment.newInstance(MainActivity.this, item);
+            Bundle extras = getIntent().getExtras();
+            firstFragment.setArguments(extras);
+            getFragmentManager().beginTransaction().replace(R.id.main_fragment_container, firstFragment).addToBackStack(null).commit();
+        }
     }
 
     @Override
     public void onAddUserFragmentInteraction() {
+
+    }
+
+    @Override
+    public void onUserViewFragmentInteraction() {
 
     }
 }

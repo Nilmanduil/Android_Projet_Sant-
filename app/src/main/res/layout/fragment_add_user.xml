@@ -7,7 +7,7 @@
     android:paddingRight="10dp"
     android:paddingBottom="5dp"
     android:paddingLeft="10dp"
-    tools:context="fr.codevallee.formation.android_projet_sante.AddUserFragment">
+    tools:context="fr.codevallee.formation.android_projet_sante.UserAddFragment">
 
     <ScrollView
         android:layout_width="match_parent"

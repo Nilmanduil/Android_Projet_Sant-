@@ -7,112 +7,128 @@
     android:padding="20dp"
     tools:context="fr.codevallee.formation.android_projet_sante.UserViewFragment">
 
-    <TextView
-        android:id="@+id/view_fullname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Full Name"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18dp"/>
-
-    <Space
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="15dp" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/view_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/gender"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="5dp" />
+            <TextView
+                android:id="@+id/view_fullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Full Name"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18dp"/>
 
-    <TextView
-        android:id="@+id/view_job"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/job"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="5dp" />
+            <TextView
+                android:id="@+id/view_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender"/>
 
-    <TextView
-        android:id="@+id/view_service"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/service"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="5dp" />
+            <TextView
+                android:id="@+id/view_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/job"/>
 
-    <TextView
-        android:id="@+id/view_mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mail"
-        android:autoLink="email"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="5dp" />
+            <TextView
+                android:id="@+id/view_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/service"/>
 
-    <TextView
-        android:id="@+id/view_telephone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/telephone"
-        android:autoLink="phone"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="5dp" />
+            <TextView
+                android:id="@+id/view_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mail"
+                android:autoLink="email"/>
 
-    <TextView
-        android:id="@+id/view_cv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cv"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="15dp" />
+            <TextView
+                android:id="@+id/view_telephone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/telephone"
+                android:autoLink="phone"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
 
-        <Button
-            android:id="@+id/view_call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/call"
-            android:drawableLeft="@android:drawable/ic_menu_call"
-            android:drawablePadding="5dp"
-            android:background="@color/colorCall"
-            android:textColor="@color/colorTextButton"/>
+            <TextView
+                android:id="@+id/view_cv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cv"/>
 
-        <Space
-            android:layout_width="5dp"
-            android:layout_height="match_parent" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
 
-        <Button
-            android:id="@+id/view_send_mail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@android:drawable/ic_dialog_email"
-            android:drawablePadding="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="@string/send_mail"
-            android:background="@color/colorSendMail"
-            android:textColor="@color/colorTextButton"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/view_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/call"
+                    android:drawableLeft="@android:drawable/ic_menu_call"
+                    android:drawablePadding="5dp"
+                    android:background="@color/colorCall"
+                    android:textColor="@color/colorTextButton"/>
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/view_send_mail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@android:drawable/ic_dialog_email"
+                    android:drawablePadding="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="@string/send_mail"
+                    android:background="@color/colorSendMail"
+                    android:textColor="@color/colorTextButton"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
 </LinearLayout>

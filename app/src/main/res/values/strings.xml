@@ -32,6 +32,13 @@
     <string name="telephone">Telephone</string>
     <string name="cv">Resume</string>
 
+    <string name="gender_undefined">Gender undefined</string>
+    <string name="job_undefined">Job undefined</string>
+    <string name="service_undefined">Service undefined</string>
+    <string name="mail_undefined">Mail undefined</string>
+    <string name="telephone_undefined">Phone undefined</string>
+    <string name="cv_undefined">Resume empty</string>
+
     <!-- Genders -->
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>

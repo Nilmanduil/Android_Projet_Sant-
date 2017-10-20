@@ -1,12 +1,14 @@
 package fr.codevallee.formation.android_projet_sante;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -19,14 +21,6 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class UserViewFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private User user;
 
     private OnUserViewFragmentInteractionListener mListener;
@@ -39,7 +33,8 @@ public class UserViewFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param User user
+     * @param context context
+     * @param user user
      * @return A new instance of fragment UserViewFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -56,8 +51,7 @@ public class UserViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -65,8 +59,47 @@ public class UserViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_view, container, false);
-        TextView testString = (TextView) view.findViewById(R.id.test_string);
-        testString.setText((CharSequence) this.user.toString());
+
+        TextView fullnameField = (TextView) view.findViewById(R.id.view_fullname);
+        TextView genderField = (TextView) view.findViewById(R.id.view_gender);
+        TextView jobField = (TextView) view.findViewById(R.id.view_job);
+        TextView serviceField = (TextView) view.findViewById(R.id.view_service);
+        TextView mailField = (TextView) view.findViewById(R.id.view_mail);
+        TextView telephoneField = (TextView) view.findViewById(R.id.view_telephone);
+        TextView cvField = (TextView) view.findViewById(R.id.view_cv);
+
+        fullnameField.setText(user.getFirstname() + " " + user.getLastname());
+        genderField.setText((user.getGender() != null ? user.getGender() : getString(R.string.gender_undefined)));
+        jobField.setText((user.getJob() != null ? user.getJob() : getString(R.string.job_undefined)));
+        serviceField.setText((user.getService() != null ? user.getService() : getString(R.string.service_undefined)));
+        mailField.setText((user.getMail() != null ? user.getMail() : getString(R.string.mail_undefined)));
+        telephoneField.setText((user.getTelephone() != null ? user.getTelephone() : getString(R.string.telephone_undefined)));
+        cvField.setText((user.getCv() != null ? user.getCv() : getString(R.string.cv_undefined)));
+
+        Button callButton = (Button) view.findViewById(R.id.view_call);
+        Button sendMailButton = (Button) view.findViewById(R.id.view_send_mail);
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (user.getTelephone() != null) {
+                    Uri phone = Uri.parse("tel:" + user.getTelephone());
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL, phone);
+                    startActivity(callIntent);
+                }
+            }
+        });
+        sendMailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (user.getMail() != null) {
+                    Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                    mailIntent.setType("text/html");
+                    mailIntent.putExtra(Intent.EXTRA_EMAIL, user.getMail());
+                    startActivity(mailIntent);
+                }
+            }
+        });
+
         return view;
     }
 

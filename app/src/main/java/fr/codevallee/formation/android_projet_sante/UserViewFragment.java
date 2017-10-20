@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,7 @@ public class UserViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_view, container, false);
+        final View view = inflater.inflate(R.layout.fragment_user_view, container, false);
 
         TextView fullnameField = (TextView) view.findViewById(R.id.view_fullname);
         TextView genderField = (TextView) view.findViewById(R.id.view_gender);
@@ -69,7 +70,11 @@ public class UserViewFragment extends Fragment {
         TextView cvField = (TextView) view.findViewById(R.id.view_cv);
 
         fullnameField.setText(user.getFirstname() + " " + user.getLastname());
-        genderField.setText((user.getGender() != null ? user.getGender() : getString(R.string.gender_undefined)));
+        String formattedGender = user.getGender();
+        if (formattedGender != null) {
+            formattedGender = formattedGender.substring(0, 1).toUpperCase() + formattedGender.substring(1);
+        }
+        genderField.setText((formattedGender != null ? formattedGender : getString(R.string.gender_undefined)));
         jobField.setText((user.getJob() != null ? user.getJob() : getString(R.string.job_undefined)));
         serviceField.setText((user.getService() != null ? user.getService() : getString(R.string.service_undefined)));
         mailField.setText((user.getMail() != null ? user.getMail() : getString(R.string.mail_undefined)));
@@ -97,6 +102,22 @@ public class UserViewFragment extends Fragment {
                     mailIntent.putExtra(Intent.EXTRA_EMAIL, user.getMail());
                     startActivity(mailIntent);
                 }
+            }
+        });
+
+        Button editButton = (Button) view.findViewById(R.id.view_edit);
+        Button deleteButton = (Button) view.findViewById(R.id.view_delete);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("[INFO]", "Clicked edit");
+                // if (manager.findFragmentById(R.id.secondary_fragment) != null) {
+                //     transaction.detach(R.id.secondary_fragment);
+                //     transaction.commit();
+                // } else {
+                    UserEditFragment firstFragment = UserEditFragment.newInstance(user);
+                    getFragmentManager().beginTransaction().replace(R.id.main_fragment_container, firstFragment).addToBackStack(null).commit();
+                // }
             }
         });
 

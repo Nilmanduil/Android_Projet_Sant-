@@ -29,7 +29,7 @@ public class User {
         this.id = id;
         this.setFirstname(firstname);
         this.setLastname(lastname);
-        this.setGender(gender);
+        this.setGender((gender != null ? gender.toLowerCase() : null));
         this.job = job;
         this.service = service;
         this.setMail(mail);
@@ -74,9 +74,9 @@ public class User {
     }
 
     public void setGender(String gender) {
-        if (gender != User.GENDER_MALE && gender != User.GENDER_FEMALE && gender != User.GENDER_AGENDER && gender != User.GENDER_OTHER)
-            this.gender = null;
-        else
+        // if (gender != User.GENDER_MALE && gender != User.GENDER_FEMALE && gender != User.GENDER_AGENDER && gender != User.GENDER_OTHER)
+        //    this.gender = null;
+        // else
             this.gender = gender;
     }
 

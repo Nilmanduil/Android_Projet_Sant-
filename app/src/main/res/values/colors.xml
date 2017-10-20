@@ -6,4 +6,6 @@
     <color name="colorCall">#0A1</color>
     <color name="colorSendMail">#444</color>
     <color name="colorTextButton">#FFF</color>
+    <color name="colorDelete">#D00</color>
+    <color name="colorEdit">#02B</color>
 </resources>

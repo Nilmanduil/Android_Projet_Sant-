@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         UserListFragment.OnListFragmentInteractionListener,
         AddUserFragment.OnAddUserFragmentInteractionListener,
-        UserViewFragment.OnUserViewFragmentInteractionListener {
+        UserViewFragment.OnUserViewFragmentInteractionListener,
+        UserEditFragment.OnUserEditFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +132,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onUserViewFragmentInteraction() {
+
+    }
+
+    @Override
+    public void onUserEditFragmentInteraction() {
 
     }
 }

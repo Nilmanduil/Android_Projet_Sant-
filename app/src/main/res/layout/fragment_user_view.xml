@@ -105,7 +105,9 @@
                     android:drawableLeft="@android:drawable/ic_menu_call"
                     android:drawablePadding="5dp"
                     android:background="@color/colorCall"
-                    android:textColor="@color/colorTextButton"/>
+                    android:textColor="@color/colorTextButton"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"/>
 
                 <Space
                     android:layout_width="5dp"
@@ -122,6 +124,46 @@
                     android:text="@string/send_mail"
                     android:background="@color/colorSendMail"
                     android:textColor="@color/colorTextButton"/>
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/view_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorEdit"
+                    android:textColor="@color/colorTextButton"
+                    android:text="@string/edit"
+                    android:drawableLeft="@android:drawable/ic_menu_edit"
+                    android:drawablePadding="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"/>
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/view_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorDelete"
+                    android:textColor="@color/colorTextButton"
+                    android:text="@string/delete"
+                    android:drawableLeft="@android:drawable/ic_menu_delete"
+                    android:drawablePadding="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"/>
 
             </LinearLayout>
 

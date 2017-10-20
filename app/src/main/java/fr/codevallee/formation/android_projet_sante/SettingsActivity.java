@@ -30,7 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        prefs = getPreferences(Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("JobsFile", Context.MODE_PRIVATE);
         final SharedPreferences.Editor prefsEditor = prefs.edit();
         Set<String> jobsSet = prefs.getStringSet("jobs", new HashSet<String>());
 

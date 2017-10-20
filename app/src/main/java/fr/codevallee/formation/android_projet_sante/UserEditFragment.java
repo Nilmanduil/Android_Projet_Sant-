@@ -3,6 +3,7 @@ package fr.codevallee.formation.android_projet_sante;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -17,6 +18,10 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -88,6 +93,15 @@ public class UserEditFragment extends Fragment {
         final EditText mailField = (EditText) view.findViewById(R.id.edit_mail);
         final EditText telephoneField = (EditText) view.findViewById(R.id.edit_telephone);
         final EditText cvField = (EditText) view.findViewById(R.id.edit_cv);
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("JobsFile", Context.MODE_PRIVATE);
+        Set<String> jobsSet = prefs.getStringSet("jobs", new HashSet<String>());
+        ArrayList<String> jobsList = new ArrayList<String>(jobsSet);
+        Log.d("Info jobs", jobsList.toString());
+        if (jobsSet != null) {
+            ArrayAdapter<String> jobsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, jobsList);
+            jobField.setAdapter(jobsAdapter);
+        }
 
         firstnameField.setText(user.getFirstname());
         lastnameField.setText(user.getLastname());

@@ -120,6 +120,19 @@ public class UserViewFragment extends Fragment {
                 // }
             }
         });
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("[INFO]", "Clicked edit");
+                // if (manager.findFragmentById(R.id.secondary_fragment) != null) {
+                //     transaction.detach(R.id.secondary_fragment);
+                //     transaction.commit();
+                // } else {
+                    UserDeleteFragment firstFragment = UserDeleteFragment.newInstance(user);
+                    getFragmentManager().beginTransaction().replace(R.id.main_fragment_container, firstFragment).addToBackStack(null).commit();
+                // }
+            }
+        });
 
         return view;
     }

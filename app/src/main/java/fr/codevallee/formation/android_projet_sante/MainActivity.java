@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity
         UserListFragment.OnListFragmentInteractionListener,
         AddUserFragment.OnAddUserFragmentInteractionListener,
         UserViewFragment.OnUserViewFragmentInteractionListener,
-        UserEditFragment.OnUserEditFragmentInteractionListener {
+        UserEditFragment.OnUserEditFragmentInteractionListener,
+        UserDeleteFragment.OnUserDeleteFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +138,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onUserEditFragmentInteraction() {
+
+    }
+
+    @Override
+    public void onUserDeleteFragmentInteraction() {
 
     }
 }

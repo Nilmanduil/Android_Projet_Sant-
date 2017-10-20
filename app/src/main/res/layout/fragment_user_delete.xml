@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="fr.codevallee.formation.android_projet_sante.UserDeleteFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_user"
+        android:textSize="18dp"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+
+    <TextView
+        android:id="@+id/delete_confirmation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_confirmation_text"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:textColor="@color/colorTextButton"
+        android:background="@color/colorDelete"
+        android:drawableLeft="@android:drawable/ic_menu_delete"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp"
+        android:drawablePadding="5dp"/>
+
+</LinearLayout>

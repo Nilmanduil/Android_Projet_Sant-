@@ -17,6 +17,7 @@
     <string name="add_user">Add user</string>
     <string name="edit_user">Edit user</string>
     <string name="delete_user">Delete user</string>
+    <string name="delete_confirmation_text">Are you sure to want to delete</string>
 
     <string name="call">Call</string>
     <string name="send_mail">Send mail</string>
